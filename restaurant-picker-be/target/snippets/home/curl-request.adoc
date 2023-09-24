@@ -1,0 +1,4 @@
+[source,bash]
+----
+$ curl 'http://localhost:8080/pick?restaurants=mcdonalds,burgerking,wingstop' -i -X GET
+----
