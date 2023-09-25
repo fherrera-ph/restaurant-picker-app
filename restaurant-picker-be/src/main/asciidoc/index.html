@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.20">
-<title>Untitled</title>
+<title>Restaurant Picker : API Reference</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -432,20 +432,82 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 #footer-text{color:rgba(0,0,0,.6);font-size:.9em}}
 @media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
 </style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
-<body class="article">
+<body class="book toc2 toc-left">
 <div id="header">
+<h1>Restaurant Picker : API Reference</h1>
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_introduction">1. Introduction</a></li>
+<li><a href="#_api">2. API</a>
+<ul class="sectlevel2">
+<li><a href="#_get_restaurantpickerpickrestaurantsrestaurants">2.1. GET /restaurantpicker/pick?restaurants={restaurants}</a></li>
+</ul>
+</li>
+</ul>
+</div>
 </div>
 <div id="content">
+<div class="sect1">
+<h2 id="_introduction">1. Introduction</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>There is frequently a need for teams to collectively decide on a location to head to for lunch.
+While each team member has an idea in mind, not everyone gets heard in the commotion and much
+time is spent to arrive at what may as well be a random choice.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_api">2. API</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_get_restaurantpickerpickrestaurantsrestaurants">2.1. GET /restaurantpicker/pick?restaurants={restaurants}</h3>
+<div class="paragraph">
+<p>This API will be called by the frontend, where the user will individually provide their restaurant preferences.
+Frontend will provide a list of restaurants to the Backend separated by comma</p>
+</div>
 <div class="listingblock">
+<div class="title">sample valid request</div>
+<div class="content">
+<pre class="CodeRay highlight nowrap"><code data-lang="http">GET /pick?restaurants=mcdonalds,burgerking,wingstop HTTP/1.1
+Host: localhost:8080</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">sample CURL</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="bash">$ curl 'http://localhost:8080/pick?restaurants=mcdonalds,burgerking,wingstop' -i -X GET</code></pre>
 </div>
 </div>
+<div class="listingblock">
+<div class="title">sample successful response</div>
+<div class="content">
+<pre class="CodeRay highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
+Vary: Origin
+Vary: Access-Control-Request-Method
+Vary: Access-Control-Request-Headers
+Content-Type: text/plain;charset=ISO-8859-1
+Content-Length: 48
+
+{
+  &quot;result&quot; : &quot;mcdonalds&quot;
+}</code></pre>
 </div>
-<div id="footer">
-<div id="footer-text">
-Last updated 2023-09-25 07:40:01 +0800
+</div>
+<div class="listingblock">
+<div class="title">sample error response - no values provided</div>
+<div class="content">
+<pre class="CodeRay highlight nowrap"><code data-lang="http">HTTP/1.1 400 Bad Request
+Vary: Origin
+Vary: Access-Control-Request-Method
+Vary: Access-Control-Request-Headers</code></pre>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 </body>

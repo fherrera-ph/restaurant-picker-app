@@ -1,0 +1,39 @@
+= Restaurant Picker : API Reference
+:doctype: book
+:toc: left
+:toc-title: Table of Contents
+:toclevels: 5
+:sectnums:
+:sectnumlevels: 5
+:icons: font
+:nofooter:
+
+== Introduction
+There is frequently a need for teams to collectively decide on a location to head to for lunch.
+While each team member has an idea in mind, not everyone gets heard in the commotion and much
+time is spent to arrive at what may as well be a random choice.
+
+== API
+=== GET /restaurantpicker/pick?restaurants={restaurants}
+
+This API will be called by the frontend, where the user will individually provide their restaurant preferences.
+Frontend will provide a list of restaurants to the Backend separated by comma
+
+
+.sample valid request
+include::{snippets}/restaurant-picker-doc/http-request.adoc[]
+
+.sample CURL
+include::{snippets}/restaurant-picker-doc/curl-request.adoc[]
+
+.sample successful response
+include::{snippets}/restaurant-picker-doc/http-response.adoc[]
+
+.sample error response - no values provided
+include::{snippets}/restaurant-picker-doc-error/http-response.adoc[]
+
+
+
+
+
+

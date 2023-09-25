@@ -12,13 +12,22 @@ java {
 	sourceCompatibility = '17'
 }
 
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+	asciidoctorExt
+}
+
 repositories {
 	mavenCentral()
 }
 
 ext {
-	set('snippetsDir', file("build/generated-snippets"))
+	snippetsDir = file('target/snippets')
 }
+
+
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
@@ -28,7 +37,10 @@ dependencies {
 	// https://mvnrepository.com/artifact/org.json/json
 	implementation 'org.json:json:20230618'
 
+	testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+	testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
 
+	asciidoctorExt 'org.springframework.restdocs:spring-restdocs-asciidoctor'
 
 }
 
@@ -42,33 +54,3 @@ tasks.named('asciidoctor') {
 	dependsOn test
 }
 
-//asciidoctor {
-//	sourceDir 'src/main/asciidoc'
-//	attributes \
-//      'snippets': file('target/snippets/home')
-//}
-
-asciidoctor {
-	configurations 'asciidoctorExt'
-	sourceDir 'src/main/asciidoc'
-	inputs.dir snippetsDir
-	dependsOn test
-
-	ext.capturedOutput = []
-	def listener = { ext.capturedOutput << it } as StandardOutputListener
-
-	logging.addStandardErrorListener(listener)
-	logging.addStandardOutputListener(listener)
-
-	doLast {
-		logging.removeStandardOutputListener(listener)
-		logging.removeStandardErrorListener(listener)
-		ext.capturedOutput.join('').with { output ->
-			if (output =~ /No snippets were found./ || output =~ /not found/) {
-				throw new RuntimeException("There are missing snippets.\n" + output)
-			} else if (output =~ /include file not found:/) {
-				throw new RuntimeException("Include file(s) not found.\n" + output)
-			}
-		}
-	}
-}
