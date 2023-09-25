@@ -35,7 +35,7 @@ function List() {
 
   return (
     <div>
-      <h1>Item List</h1>
+      <h1>List the Restaurants where you want to eat</h1>
       <div>
         <input
           type="text"
