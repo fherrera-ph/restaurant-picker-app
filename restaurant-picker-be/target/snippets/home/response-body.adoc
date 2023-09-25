@@ -1,4 +1,4 @@
 [source,plain,options="nowrap"]
 ----
-mcdonalds,burgerking,wingstop
+{"result":"mcdonalds,burgerking,wingstop"}
 ----

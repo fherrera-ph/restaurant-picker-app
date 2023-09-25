@@ -12,6 +12,7 @@ import sg.palo.restaurantpickerbe.service.RestaurantPickerService;
 
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
@@ -29,18 +30,11 @@ public class RestaurantPickerControllerTest {
     private RestaurantPickerService restaurantPickerService;
 
     @Test
-    void hello() throws Exception {
-        this.mockMvc.perform(get("/hello"))
-                .andExpect(status().isOk());
-    }
-    @Test
     void shouldReturnOnlyOneResult() throws Exception {
         this.mockMvc.perform(get("/pick")
                 .queryParam("restaurants","mcdonalds"))
                 .andExpect(status().isOk())
-                .andReturn()
-                .getResponse()
-                .getContentAsString().matches("^mcdonalds$");
+                .andExpect(jsonPath("$.result").value("mcdonalds"));
     }
 
     @Test
