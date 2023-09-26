@@ -21,7 +21,7 @@ function List() {
 
   const handleSubmit = () => {
     const requestParams = items.join(',');
-    const apiUrl = 'http://localhost:8080/restaurantpicker/pick?restaurants=' + requestParams;
+    const apiUrl = process.env.PERSTAURANT_BE_API_URL ||'http://localhost:8080/restaurantpicker/pick?restaurants=' + requestParams;
 
     fetch(apiUrl)
       .then((response) => response.json())
