@@ -25,7 +25,7 @@ Building the frontend Dockerfile - in the restaurant-picker-app-fe folder, run t
 >docker build -t restaurant-picker-app-fe .
 
 Running the frontend project's Docker image - in the restaurant-picker-app-fe folder, run the command:
->docker run -p 3000:3000 restaurant-picker-app-fe
+>docker build -t my-react-app --build-arg RESTAURANT_BE_API_URL=http://localhost:8080 .
 
 Running the backend project locally - in the restaurant-picker-app-be folder, run the command:
 >gradle bootRun
