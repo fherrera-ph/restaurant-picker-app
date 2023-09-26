@@ -17,6 +17,8 @@ The project consist of two parts:
 1. restaurant-picker-app-fe - The frontend UI, created on React
 2. restaurant-picker-app-be - The backend, created in Spring Boot
 
+Further information can be found on the Wiki page: https://github.com/fherrera-ph/restaurant-picker-app/wiki
+
 
 Running the frontend project locally - in the restaurant-picker-app-fe folder, run the command:
 >npm start
