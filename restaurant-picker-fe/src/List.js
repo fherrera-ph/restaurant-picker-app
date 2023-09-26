@@ -57,7 +57,7 @@ function List() {
 
       {apiResult !== null && (
         <div>
-          <h2>You should eat at:</h2>
+          <h2>You should eat at</h2>
           <p>{apiResult}</p>
         </div>
       )}
